@@ -1,1 +1,1 @@
-web: santagram_api
+web:    server
