@@ -67,7 +67,7 @@
       <file leaf-file-name="santagram_api.go" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/santagram_api.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="253" selection-end="253" vertical-scroll-proportion="0.40177253" vertical-offset="0" max-vertical-offset="850">
+            <state line="15" column="28" selection-start="243" selection-end="243" vertical-scroll-proportion="0.37666175" vertical-offset="0" max-vertical-offset="850">
               <folding />
             </state>
           </provider>
@@ -431,12 +431,12 @@
       <changelist id="b4431bac-eb85-4387-8e9a-46a96c56bbfe" name="Default" comment="" />
       <created>1418006764413</created>
       <updated>1418006764413</updated>
-      <workItem from="1418006771314" duration="3949000" />
+      <workItem from="1418006771314" duration="4408000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3949000" />
+    <option name="totallyTimeSpent" value="4408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="0" />
@@ -496,7 +496,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/santagram_api.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="253" selection-end="253" vertical-scroll-proportion="0.40177253" vertical-offset="0" max-vertical-offset="850">
+        <state line="15" column="28" selection-start="243" selection-end="243" vertical-scroll-proportion="0.37666175" vertical-offset="0" max-vertical-offset="850">
           <folding />
         </state>
       </provider>
