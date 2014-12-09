@@ -13,7 +13,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":80", nil)
 
 //	userIn := &User{Username: "Benjamin", Email: "lambardi@gmail.com"}
 //	userIn.save()
