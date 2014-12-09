@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -12,8 +13,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
+	port := os.Getenv("SG_PORT")
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(fmt.Sprintf(":%v", port), nil)
 
 //	userIn := &User{Username: "Benjamin", Email: "lambardi@gmail.com"}
 //	userIn.save()
