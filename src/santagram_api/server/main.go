@@ -13,7 +13,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
-	port := os.Getenv("SG_PORT")
+	port := os.Getenv("PORT")
 	http.HandleFunc("/", handler)
 	http.ListenAndServe(fmt.Sprintf(":%v", port), nil)
 
