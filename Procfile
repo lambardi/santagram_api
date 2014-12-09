@@ -1,1 +1,1 @@
-web: server
+web: server -port=$SG_PORT
