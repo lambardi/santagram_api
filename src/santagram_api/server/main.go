@@ -10,6 +10,10 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	database := "santagram"
+	collection := "santagram"
+	result := new(User)
+
 	session, err := mgo.Dial("admin:password@ds063170.mongolab.com:63170/santagram")
 	if (err != nil){
 		fmt.Fprintf(err.Error())
@@ -24,24 +28,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
-	database := "santagram"
-	collection := "santagram"
-	result := new(User)
-	fmt.Printf(result.Username)
-
-	session, err := mgo.Dial("admin:password@ds063170.mongolab.com:63170/santagram")
-	if (err != nil){
-		fmt.Printf("error")
-		fmt.Printf(err.Error())
-	}
-	c := session.DB(database).C(collection)
-	err = c.Find(bson.M{"id": 2}).One(&result)
-	if (err != nil){
-		fmt.Printf("error")
-		fmt.Printf(err.Error())
-	}
-	fmt.Printf("--------------")
-	fmt.Printf(result.Username)
 
 	port := os.Getenv("PORT")
 	http.HandleFunc("/", handler)
