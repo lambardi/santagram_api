@@ -7,3 +7,7 @@ type User struct {
 	Username string	 `bson:"username,omitempty"`
 	Email string     `bson:"Email,omitempty"`
 }
+
+func (*User) Save() error {
+	return nil
+}

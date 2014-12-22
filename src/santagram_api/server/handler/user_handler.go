@@ -21,5 +21,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if (err != nil){
 		fmt.Fprintf(w, err.Error())
 	}
-	fmt.Fprintf(w, result.Username)
+	fmt.Fprintf(w, result.ID.Hex())
 }
