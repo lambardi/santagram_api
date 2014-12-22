@@ -16,14 +16,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	session, err := mgo.Dial("admin:password@ds063170.mongolab.com:63170/santagram")
 	if (err != nil){
-		fmt.Fprintf(err.Error())
+		fmt.Fprintf(w, err.Error())
 	}
 	c := session.DB(database).C(collection)
 	err = c.Find(bson.M{"id": 2}).One(&result)
 	if (err != nil){
-		fmt.Fprintf(err.Error())
+		fmt.Fprintf(w, err.Error())
 	}
-	fmt.Fprintf(result.Username)
+	fmt.Fprintf(w, result.Username)
 }
 
 
