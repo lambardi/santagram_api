@@ -1,25 +1,57 @@
 package handler
 
 import (
-	mgo "gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 	"fmt"
 	"net/http"
 	"santagram_api/server/user"
+	"santagram_api/server/userdao"
+	"encoding/json"
+	"io/ioutil"
 )
-func Handler(w http.ResponseWriter, r *http.Request) {
+func UserRouter(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		StoreHandler(w, r)
+	}
+}
+
+func StoreHandler(w http.ResponseWriter, r *http.Request) {
 	database := "santagram"
 	collection := "santagram"
+	dialString := "admin:password@ds063170.mongolab.com:63170/santagram"
+	mongoDAO := userdao.NewMongoDAO(database, collection, dialString)
 	result := new(user.User)
 
-	session, err := mgo.Dial("admin:password@ds063170.mongolab.com:63170/santagram")
-	if (err != nil){
-		fmt.Fprintf(w, err.Error())
+	body, _ := ioutil.ReadAll(r.Body)
+	err := json.Unmarshal(body, result)
+	if (err != nil) {
+		fmt.Fprintf(w, (fmt.Sprintf(`{"error": %s}`, err.Error())))
 	}
-	c := session.DB(database).C(collection)
-	err = c.Find(bson.M{"id": 2}).One(&result)
+
+	result, err = mongoDAO.Store(*result)
 	if (err != nil){
-		fmt.Fprintf(w, err.Error())
+		fmt.Fprintf(w, (fmt.Sprintf(`{"error": %s}`, err.Error())))
 	}
-	fmt.Fprintf(w, result.ID.Hex())
+
+	responseBytes, _ := json.Marshal(result)
+	w.Write(responseBytes)
+}
+
+func AuthenticationHandler(w http.ResponseWriter, r *http.Request) {
+	database := "santagram"
+	collection := "santagram"
+	dialString := "admin:password@ds063170.mongolab.com:63170/santagram"
+	mongoDAO := userdao.NewMongoDAO(database, collection, dialString)
+	result := new(user.User)
+
+	body, _ := ioutil.ReadAll(r.Body)
+	_ = json.Unmarshal(body, result)
+	success, err := mongoDAO.Authenticate(result.Username, result.Password)
+	if err != nil {
+		fmt.Fprintf(w, (fmt.Sprintf(`{"error": %s}`, err.Error())))
+	}
+	if (success == true) {
+		fmt.Fprintf(w, `{"authenticated": true}`)
+	} else {
+		fmt.Fprintf(w, `{"authenticated": false}`)
+	}
 }
